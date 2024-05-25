@@ -7,7 +7,9 @@ import { GoHomeFill } from "react-icons/go";
 
 
 export default function Sidebar() {
-  const {data: session} = useSession()
+  const {data: session} = useSession();
+
+  console.log(session);
   return (
     <div className="flex flex-col gap-5 p-3">
         <Link href='/'>
@@ -23,6 +25,22 @@ export default function Sidebar() {
           ): (
             <button className=" bg-blue-600  py-2 px-4 rounded-full text-white w-fit h-10 shadow-md  hidden xl:inline "onClick={()=> signIn()} > Sign in </button>
           )}
+
+          <div className="" >
+            {session && (
+              <div className=" flex gap-2 bg-gray-200 rounded-full px-5 py-2 w-fit cursor-pointer">
+                <div>
+                 <img src={session.user.image} alt="Photo" width={40} className="rounded-full" />
+
+                </div>
+                 <div>
+                  <h4 className="font-bold">{session.user.name}</h4>
+                  <p className="text-sm">{session.user.username}</p>
+                 </div>
+              </div>
+            )}
+          </div>
+          
       
 
     </div>
